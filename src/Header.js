@@ -1,7 +1,10 @@
 import React from 'react'
 import { Link } from "react-router-dom"
+import { useSelector } from 'react-redux'
 
 const PageHeader = () => {
+    const cartItems = useSelector(state => state.cart.cart)
+    //console.log(cartItems);
   return (
     <header className="header">
         <div className="header__top">
@@ -10,8 +13,8 @@ const PageHeader = () => {
                     <div className="col-lg-6 col-md-6">
                         <div className="header__top__left">
                             <ul>
-                                <li><i className="fa fa-envelope"></i> hello@colorlib.com</li>
-                                <li>Free Shipping for all Order of $99</li>
+                                <li><i className="fa fa-envelope"></i> hello@tsf.com</li>
+                                <li>Free Shipping for all Order of Rs99</li>
                             </ul>
                         </div>
                     </div>
@@ -22,15 +25,6 @@ const PageHeader = () => {
                                 <a href="/"><i className="fa fa-twitter"></i></a>
                                 <a href="/"><i className="fa fa-linkedin"></i></a>
                                 <a href="/"><i className="fa fa-pinterest-p"></i></a>
-                            </div>
-                            <div className="header__top__right__language">
-                                <img src="img/language.png" alt=""/>
-                                <div>English</div>
-                                <span className="arrow_carrot-down"></span>
-                                <ul>
-                                    <li><a href="/">Spanis</a></li>
-                                    <li><a href="/">English</a></li>
-                                </ul>
                             </div>
                             <div className="header__top__right__auth">
                                 <a href="/"><i className="fa fa-user"></i> Login</a>
@@ -44,34 +38,27 @@ const PageHeader = () => {
             <div className="row">
                 <div className="col-lg-3">
                     <div className="header__logo">
-                        <a href="./index.html"><img src="img/logo.png" alt=""/></a>
+                        <a href="./index.html"><img src="img/logo.jpg" alt=""/></a>
                     </div>
                 </div>
-                <div className="col-lg-6">
+                <div className="col-lg-7">
                     <nav className="header__menu">
                         <ul>
-                            <li className="active"><a href="./index.html">Home</a></li>
-                            <li><a href="./shop-grid.html">Shop</a></li>
-                            <li><a href="/">Pages</a>
-                                <ul className="header__menu__dropdown">
-                                    <li><a href="./shop-details.html">Shop Details</a></li>
-                                    <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                                    <li><a href="./checkout.html">Check Out</a></li>
-                                    <li><a href="./blog-details.html">Blog Details</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="./blog.html">Blog</a></li>
-                            <li><a href="./contact.html">Contact</a></li>
+                            <li className="active"><Link to="/">Home</Link></li>
+                            <li><Link to="/groceries">Groceries</Link></li>
+                            <li><Link to="/vegitables">Vegetables</Link></li>
+                             <li><Link to="/fruits">Fruits</Link></li>
+                            <li><Link to="/contact">Contact</Link></li>
                         </ul>
                     </nav>
                 </div>
-                <div className="col-lg-3">
+                <div className="col-lg-2">
                     <div className="header__cart">
                         <ul>
                             <li><a href="/"><i className="fa fa-heart"></i> <span>1</span></a></li>
-                            <li><a href="/"><i className="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                            <li><Link to="/checkout"><i className="fa fa-shopping-bag"></i> <span>{ cartItems.length}</span></Link></li>
                         </ul>
-                        <div className="header__cart__price">item: <span>$150.00</span></div>
+                        <div className="header__cart__price">item: <span>Rs150.00</span></div>
                     </div>
                 </div>
             </div>
